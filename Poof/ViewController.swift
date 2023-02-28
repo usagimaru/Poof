@@ -11,14 +11,20 @@ class ViewController: NSViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		// Do any additional setup after loading the view.
 	}
-
-	override var representedObject: Any? {
-		didSet {
-		// Update the view, if already loaded.
-		}
+	
+	override func mouseDown(with event: NSEvent) {
+		super.mouseDown(with: event)
+		
+		guard let window = self.view.window
+		else { return }
+		
+		let center = window.convertPoint(toScreen: event.locationInWindow)
+		let size = NSSize(width: 128, height: 128)
+		
+		let effect = NSAnimationEffect.poof
+		//let effect = NSAnimationEffect.disappearingItemDefault // Same result
+		effect.show(centeredAt: center, size: size)
 	}
 
 
